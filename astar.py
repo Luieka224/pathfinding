@@ -90,9 +90,6 @@ class Spot:
 		if self.col > 0 and not grid[self.row][self.col - 1].is_barrier(): # LEFT
 			self.neighbors.append(grid[self.row][self.col - 1])
 
-	# def update_neighbors(self, grid):
-	# 	if(grid[self.row, self.col] == )
-
 	def __lt__(self, other):
 		return False
 
@@ -102,10 +99,13 @@ def h(p1, p2):
 	return abs(x1 - x2) + abs(y1 - y2)
 
 def reconstruct_path(came_from, current, draw):
+	count = 0
 	while current in came_from:
+		count += 1
 		current = came_from[current]
 		current.make_path()
 		draw()
+	print("Walk: "+str(count))
 
 def a_star(draw, grid, start, end):
 	count = 0
